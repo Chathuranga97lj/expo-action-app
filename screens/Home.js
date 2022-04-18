@@ -1,22 +1,32 @@
-import { View, Text, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Button } from 'react-native'
 import React, {useState} from 'react'
 import { global } from '../styles/global'
+import { addTask } from '../store/taskAction'
+import { useSelector } from 'react-redux'
 
 const Home = ({navigation}) => {
 
-  const [tasks, setTasks] = useState([
-    {"task":"Computer Network", "done":true, "id":"1"},
-    {"task":"Object Oriented Programming", "done":true, "id":"2"},
-    {"task":"Web Development", "done":true, "id":"3"}
-  ])
+  const tasks = useSelector(state => state.tasks)
 
+  const [text, setText] = useState('')
+  const changeHandler = (val) => {
+    setText(val)
+  }
 
   return (
-    <View>
+    <View style={global.container} >
+
+      <TextInput
+        style={styles.input}
+        placeholder='Add new task'
+        onChangeText={changeHandler}
+      />
+      <Button title='Add Task' color='blue' onPress={() => addTask(text)} />  
+
       <FlatList
         data={tasks}
         renderItem={({item}) => (
-          <TouchableOpacity style={global.container} onPress={() => navigation.navigate("Task", item)}>
+          <TouchableOpacity style={global.item}  onPress={() => navigation.navigate("Task", item)}>
             <Text>{item.task}</Text>
           </TouchableOpacity>
         )}
@@ -25,6 +35,13 @@ const Home = ({navigation}) => {
   )
 }
 
-
+const styles = StyleSheet.create({
+  input: {
+    margin: 10,
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey'
+  }
+})
 
 export default Home

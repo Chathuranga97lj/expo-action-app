@@ -5,7 +5,8 @@ const initialState = {
     [
         {"task":"Computer Network", "done":false, "id":"1"},
         {"task":"Object Oriented Programming", "done":false, "id":"2"},
-        {"task":"Web Development", "done":false, "id":"3"}
+        {"task":"Web Development", "done":false, "id":"3"},
+        {"task":"Micro-Controller", "done":false, "id":"4"}
       ]
 }
 
