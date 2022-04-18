@@ -2,9 +2,11 @@ import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Button }
 import React, {useState} from 'react'
 import { global } from '../styles/global'
 import { addTask } from '../store/taskAction'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Home = ({navigation}) => {
+
+  const dispatch = useDispatch()
 
   const tasks = useSelector(state => state.tasks)
 
@@ -12,6 +14,8 @@ const Home = ({navigation}) => {
   const changeHandler = (val) => {
     setText(val)
   }
+
+  const submitTask = (text) => dispatch(addTask(text))
 
   return (
     <View style={global.container} >
@@ -21,7 +25,7 @@ const Home = ({navigation}) => {
         placeholder='Add new task'
         onChangeText={changeHandler}
       />
-      <Button title='Add Task' color='blue' onPress={() => addTask(text)} />  
+      <Button title='Add Task' color='blue' onPress={() => submitTask(text)} />  
 
       <FlatList
         data={tasks}
