@@ -9,7 +9,7 @@ const MyTab = () => {
   return (
     <Tab.Navigator>
         <Tab.Screen name = "Home Page" component={HomeStack} />
-        <Tab.Screen name="About Page" component={AboutStack} />
+        <Tab.Screen name="Done page" component={AboutStack} />
     </Tab.Navigator>
   )
 }
