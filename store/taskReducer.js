@@ -25,7 +25,7 @@ const taskReducer = (state = initialState, action) => {
         case DELETE_TASK:
             return{
                 ...state,
-                task: state.tasks.filter(item => item.id != action.payload)
+                tasks: state.tasks.filter(item => item.id != action.payload)
             }  
             
         case DID_TASK:

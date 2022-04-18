@@ -1,7 +1,7 @@
 import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet, Button } from 'react-native'
 import React, {useState} from 'react'
 import { global } from '../styles/global'
-import { addTask } from '../store/taskAction'
+import { addTask, deleteTask } from '../store/taskAction'
 import { useSelector, useDispatch } from 'react-redux'
 
 const Home = ({navigation}) => {
@@ -16,6 +16,8 @@ const Home = ({navigation}) => {
   }
 
   const submitTask = (text) => dispatch(addTask(text))
+
+  const removeTask = (id) => dispatch(deleteTask(id))
 
   return (
     <View style={global.container} >
@@ -32,6 +34,7 @@ const Home = ({navigation}) => {
         renderItem={({item}) => (
           <TouchableOpacity style={global.item}  onPress={() => navigation.navigate("Task", item)}>
             <Text>{item.task}</Text>
+            <Button title='delete' onPress={() => removeTask(item.id)} />
           </TouchableOpacity>
         )}
       />
